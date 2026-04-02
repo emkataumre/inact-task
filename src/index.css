@@ -1,0 +1,27 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg: #ffffff;
+  --color-dark: #3A4847;
+  --color-orange: #FA5C05;
+  --color-gold: #D4A456;
+  --color-grey-mid: #8F9591;
+  --color-grey-light: #AEB3B2;
+  --color-white: #ffffff;
+  --color-card: #F9F2EB;
+  --color-border: #E8E0D6;
+  --shadow-card: 0 1px 3px rgba(58, 72, 71, 0.08), 0 4px 16px rgba(58, 72, 71, 0.06);
+  --shadow-card-hover: 0 4px 12px rgba(58, 72, 71, 0.12), 0 12px 32px rgba(58, 72, 71, 0.1);
+  --radius: 12px;
+  --font: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  background-color: var(--color-bg);
+  color: var(--color-dark);
+  -webkit-font-smoothing: antialiased;
+}

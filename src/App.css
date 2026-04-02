@@ -1,0 +1,223 @@
+/* ── Layout ── */
+.app {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+/* ── Header ── */
+.header {
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header__logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-dark);
+  letter-spacing: -0.5px;
+}
+
+.header__badge {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-grey-mid);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ── Page ── */
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+
+.page__title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin: 0 0 6px;
+  letter-spacing: -0.5px;
+}
+
+.page__subtitle {
+  font-size: 14px;
+  color: var(--color-grey-mid);
+  font-weight: 400;
+  margin: 0 0 40px;
+}
+
+/* ── Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid__full {
+    grid-column: 1;
+  }
+
+  .page {
+    padding: 24px 16px 48px;
+  }
+
+  .header {
+    padding: 0 20px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card__divider {
+    margin: 0 -20px 20px;
+  }
+}
+
+.grid__full {
+  grid-column: 1 / -1;
+}
+
+.grid__full .recharts-wrapper {
+  margin: 0 auto;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 28px 32px;
+  transition: box-shadow 0.2s ease;
+  border: 1px solid var(--color-border);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.card__label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--color-orange);
+  margin: 0 0 8px;
+}
+
+.card__title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-dark);
+  margin: 0 0 20px;
+  letter-spacing: -0.2px;
+}
+
+.card__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 0 -32px 24px;
+}
+
+/* ── Family Tree ── */
+.family-tree ul {
+  list-style: none;
+  padding-left: 20px;
+  margin: 0;
+  border-left: 2px solid var(--color-border);
+}
+
+.family-tree > ul {
+  padding-left: 0;
+  border-left: none;
+}
+
+.family-tree li {
+  padding: 5px 0 5px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-dark);
+  position: relative;
+}
+
+.family-tree li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 12px;
+  height: 2px;
+  background: var(--color-border);
+}
+
+.family-tree > ul > li::before {
+  display: none;
+}
+
+.family-tree > ul > li {
+  padding-left: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-orange);
+}
+
+/* ── Shoe Size ── */
+.shoe-size__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.shoe-size__stat {
+  background: var(--color-bg);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.shoe-size__stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--color-grey-mid);
+  margin-bottom: 8px;
+}
+
+.shoe-size__stat-value {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-dark);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.shoe-size__stat-unit {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-grey-mid);
+  margin-top: 4px;
+}
+
+.shoe-size__stat--male .shoe-size__stat-value {
+  color: var(--color-dark);
+}
+
+.shoe-size__stat--female .shoe-size__stat-value {
+  color: var(--color-dark);
+}
