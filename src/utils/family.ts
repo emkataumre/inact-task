@@ -1,3 +1,4 @@
+import regression from "regression";
 import { type Gender, type Person } from "../data/family";
 
 export function collectPeople(
@@ -56,58 +57,10 @@ export function formatHeightData(
 export function quadraticRegression(
   data: { age: number; height: number }[],
 ): (age: number) => number {
-  const n = data.length;
-
-  // Step 1: compute sums needed for the normal equations
-  let sx = 0,
-    sx2 = 0,
-    sx3 = 0,
-    sx4 = 0;
-  let sy = 0,
-    sxy = 0,
-    sx2y = 0;
-
-  for (const { age: x, height: y } of data) {
-    sx += x;
-    sx2 += x ** 2;
-    sx3 += x ** 3;
-    sx4 += x ** 4;
-    sy += y;
-    sxy += x * y;
-    sx2y += x ** 2 * y;
-  }
-
-  // Step 2: Gaussian elimination on the 3x3 augmented matrix
-  // Each row is [coeff of a, coeff of b, coeff of c, rhs]
-  const mat = [
-    [sx4, sx3, sx2, sx2y],
-    [sx3, sx2, sx, sxy],
-    [sx2, sx, n, sy],
-  ];
-
-  // Forward elimination
-  for (let col = 0; col < 3; col++) {
-    if (Math.abs(mat[col][col]) < 1e-10) throw new Error("Singular matrix — cannot fit quadratic");
-    for (let row = col + 1; row < 3; row++) {
-      const factor = mat[row][col] / mat[col][col];
-      for (let k = col; k <= 3; k++) {
-        mat[row][k] -= factor * mat[col][k];
-      }
-    }
-  }
-
-  // Back substitution to get [a, b, c]
-  const coeffs = [0, 0, 0];
-  for (let i = 2; i >= 0; i--) {
-    coeffs[i] = mat[i][3];
-    for (let j = i + 1; j < 3; j++) {
-      coeffs[i] -= mat[i][j] * coeffs[j];
-    }
-    coeffs[i] /= mat[i][i];
-  }
-
-  const [a, b, c] = coeffs;
-
-  // Step 3: return the predict function
+  const result = regression.polynomial(
+    data.map(({ age, height }) => [age, height] as [number, number]),
+    { order: 2 },
+  );
+  const [a, b, c] = result.equation;
   return (age: number) => a * age ** 2 + b * age + c;
 }
