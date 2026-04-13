@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Project-specific
+demo_script.md
+emil_inact.pptx
+.claude/settings.local.json
